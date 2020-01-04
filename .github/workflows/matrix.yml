@@ -90,7 +90,7 @@ jobs:
           cmake -DARCH=default -DCMAKE_BUILD_TYPE=Release -DSTATIC=true ..
           make -j2
           cd src
-          TARGETS="TurtleCoind miner zedwallet turtle-service cryptotest wallet-api wallet-upgrader"
+          TARGETS="cirquityd miner cirquity-wallet cirquity-service cryptotest cirquity-api cirquity-upgrader"
           ${STRIP} ${TARGETS}
 
       # Test the crypto
@@ -108,16 +108,16 @@ jobs:
         run: |
           if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
           cd build/src
-          TARGETS="TurtleCoind miner zedwallet turtle-service cryptotest wallet-api wallet-upgrader"
+          TARGETS="cirquityd miner cirquity-wallet cirquity-service cryptotest cirquity-api cirquity-upgrader"
           if [[ "${LABEL}" != "aarch64" ]]; then strip ${TARGETS}; fi
-          rm -rf turtlecoin-${TAG}
-          mkdir turtlecoin-${TAG}
-          cp ${TARGETS} turtlecoin-${TAG}/
-          cp ../../LICENSE turtlecoin-${TAG}/
-          tar cvfz turtlecoin-${LABEL}-${TAG}.tar.gz turtlecoin-${TAG}/
-          echo ::set-output name=binary_path::turtlecoin-${TAG}
-          echo ::set-output name=artifact_name::turtlecoin-${LABEL}-${TAG}
-          echo ::set-output name=file_name::turtlecoin-${LABEL}-${TAG}.tar.gz
+          rm -rf cirquity-${TAG}
+          mkdir cirquity-${TAG}
+          cp ${TARGETS} cirquity-${TAG}/
+          cp ../../LICENSE cirquity-${TAG}/
+          tar cvfz cirquity-${LABEL}-${TAG}.tar.gz cirquity-${TAG}/
+          echo ::set-output name=binary_path::cirquity-${TAG}
+          echo ::set-output name=artifact_name::cirquity-${LABEL}-${TAG}
+          echo ::set-output name=file_name::cirquity-${LABEL}-${TAG}.tar.gz
 
       # Upload to GH Release
       - name: Upload to GH Release
@@ -190,16 +190,16 @@ jobs:
         run: |
           if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
           cd build/src
-          TARGETS="TurtleCoind miner zedwallet turtle-service cryptotest wallet-api wallet-upgrader"
+          TARGETS="cirquityd miner cirquity-wallet cirquity-service cryptotest cirquity-api cirquity-upgrader"
           strip ${TARGETS}
-          rm -rf turtlecoin-${TAG}
-          mkdir turtlecoin-${TAG}
-          cp ${TARGETS} turtlecoin-${TAG}/
-          cp ../../LICENSE turtlecoin-${TAG}/
-          tar cvfz turtlecoin-${LABEL}-${TAG}.tar.gz turtlecoin-${TAG}/
-          echo ::set-output name=binary_path::turtlecoin-${TAG}
-          echo ::set-output name=artifact_name::turtlecoin-${LABEL}-${TAG}
-          echo ::set-output name=file_name::turtlecoin-${LABEL}-${TAG}.tar.gz
+          rm -rf cirquity-${TAG}
+          mkdir cirquity-${TAG}
+          cp ${TARGETS} cirquity-${TAG}/
+          cp ../../LICENSE cirquity-${TAG}/
+          tar cvfz cirquity-${LABEL}-${TAG}.tar.gz cirquity-${TAG}/
+          echo ::set-output name=binary_path::cirquity-${TAG}
+          echo ::set-output name=artifact_name::cirquity-${LABEL}-${TAG}
+          echo ::set-output name=file_name::cirquity-${LABEL}-${TAG}.tar.gz
 
 
       # Upload to GH Release
@@ -256,7 +256,7 @@ jobs:
           $env:CLCACHE_DIR = "$env:GITHUB_WORKSPACE\clcache"
           $env:PATH = "$env:PATH;$env:MSBUILD_PATH"
           cd build
-          MSBuild TurtleCoin.sln /p:CLToolExe=clcache.exe /p:CLToolPath=c:\hostedtoolcache\windows\Python\3.6.8\x64\Scripts\ /p:Configuration=Release /m
+          MSBuild cirquity.sln /p:CLToolExe=clcache.exe /p:CLToolPath=c:\hostedtoolcache\windows\Python\3.6.8\x64\Scripts\ /p:Configuration=Release /m
 
       # Test the crypto
       - name: Test Crypto
@@ -274,14 +274,14 @@ jobs:
         run: |
           if [[ "${TAG:5:4}" == "tags" ]]; then export TAG=${TAG:10}; else export TAG=${COMMIT_SHA}; fi
           cd build/src/Release
-          rm -rf turtlecoin-${TAG}
-          mkdir turtlecoin-${TAG}
-          cp *.exe turtlecoin-${TAG}/
-          cp ../../../LICENSE turtlecoin-${TAG}/
-          7z a turtlecoin-${LABEL}-${TAG}.zip turtlecoin-${TAG}/
-          echo ::set-output name=binary_path::turtlecoin-${TAG}
-          echo ::set-output name=artifact_name::turtlecoin-${LABEL}-${TAG}
-          echo ::set-output name=file_name::turtlecoin-${LABEL}-${TAG}.zip
+          rm -rf cirquity-${TAG}
+          mkdir cirquity-${TAG}
+          cp *.exe cirquity-${TAG}/
+          cp ../../../LICENSE cirquity-${TAG}/
+          7z a cirquity-${LABEL}-${TAG}.zip cirquity-${TAG}/
+          echo ::set-output name=binary_path::cirquity-${TAG}
+          echo ::set-output name=artifact_name::cirquity-${LABEL}-${TAG}
+          echo ::set-output name=file_name::cirquity-${LABEL}-${TAG}.zip
 
 
       # Upload to GH Release
