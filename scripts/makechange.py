@@ -33,11 +33,11 @@ import sys
 from threading import Thread
 
 # Forks adjust as needed
-moveDecimal = 100  # TRTL has 2 decimals so 100 is the divide/multiply factor
+moveDecimal = 100  # CIRQ has 2 decimals so 100 is the divide/multiply factor
 minAmount = 100 * moveDecimal  # min number for amount to xfer
 maxAmount = 5000 * moveDecimal  # max number for amount to xfer
 anonymity = 3
-fee = 10 # atomic units, TRTL would be 0.10 as the tx network fee
+fee = 10 # atomic units, CIRQ would be 0.10 as the tx network fee
 
 def getAddress(host, port, rpcPassword):
     payload = {
