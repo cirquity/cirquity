@@ -1,4 +1,4 @@
-![CIRQUITY-LOGO](https://user-images.githubusercontent.com/447985/71770052-a44e1780-2f28-11ea-8ac1-223ca8831942.png)
+![CIRQUITY-LOGO](https://user-images.githubusercontent.com/447985/71770077-0575eb00-2f29-11ea-930d-614a1e1bab6c.png)
 
 #### Master Build Status
 ![Build Status](https://github.com/turtlecoin/turtlecoin/workflows/Build/badge.svg?branch=master)
