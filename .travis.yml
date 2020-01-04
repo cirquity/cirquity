@@ -78,7 +78,7 @@ before_install:
 
 script:
 - eval $MATRIX_EVAL
-# If we're cross compiling aarch64, make sure our build enivornment is setup
+# If we're cross compiling aarch64, make sure our build environment is setup
 # we do this in the script stage because this happens after the repo is cloned
 - if [[ "$LABEL" == "aarch64" ]]; then source scripts/prep-aarch64.sh ; fi
 - mkdir build && cd build

@@ -222,7 +222,7 @@ namespace Utilities
         /* We want to format our number with comma separators so it's easier to
            use. Now, we could use the nice print_money() function to do this.
            However, whilst this initially looks pretty handy, if we have a locale
-           such as ja_JP.utf8, 1 TRTL will actually be formatted as 100 TRTL, which
+           such as ja_JP.utf8, 1 CIRQ will actually be formatted as 100 CIRQ, which
            is terrible, and could really screw over users.
 
            So, easy solution right? Just use en_US.utf8! Sure, it's not very

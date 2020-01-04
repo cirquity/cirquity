@@ -343,7 +343,7 @@ namespace WalletTypes
 
         /* A map of public keys to amounts, since one transaction can go to
            multiple addresses. These can be positive or negative, for example
-           one address might have sent 10,000 TRTL (-10000) to two recipients
+           one address might have sent 10,000 CIRQ (-10000) to two recipients
            (+5000), (+5000)
 
            All the public keys in this map, are ones that the wallet container
@@ -482,7 +482,7 @@ namespace WalletTypes
     class FeeType
     {
         public:
-            /* Fee will be specified as fee per byte, for example, 1 atomic TRTL per byte. */
+            /* Fee will be specified as fee per byte, for example, 1 atomic CIRQ per byte. */
             bool isFeePerByte = false;
 
             /* Fee for each byte, in atomic units. Allowed to be a double, since

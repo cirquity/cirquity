@@ -12,14 +12,15 @@ content = """
 |_|_| |_|_|
 """
 
+
 def rpc(method, params={}):
     base_url = "http://localhost:8070/json_rpc"
     payload = {
         "password": "80085",
-        "jsonrpc" : "2.0",
-        "method" : method,
-        "params" : params,
-        "id" : "blah"
+        "jsonrpc": "2.0",
+        "method": method,
+        "params": params,
+        "id": "blah"
     }
 
     try:
@@ -32,6 +33,7 @@ def rpc(method, params={}):
         print("Failed to talk to server. {}".format(response))
         sys.exit(1)
     return response
+
 
 r = rpc("sendTransaction", {
     "transfers": [{
