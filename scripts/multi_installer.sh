@@ -145,7 +145,7 @@ _configure_os() {
 }
 
 _note "Cirquity Multi_Installer v1.0 (pepperoni)"
-_colorize green "   _____ _____ _____   ____  _    _ _____ _________     __\n  / ____|_   _|  __ \ / __ \| |  | |_   _|__   __\ \   / /\n | |      | | | |__) | |  | | |  | | | |    | |   \ \_/ / \n | |      | | |  _  /| |  | | |  | | | |    | |    \   /  \n | |____ _| |_| | \ \| |__| | |__| |_| |_   | |     | |   \n  \_____|_____|_|  \_\\___\_\\____/|_____|  |_|     |_|   \n" && echo
+_colorize green "   _____ _____ _____   ____  _    _ _____ _________     __\n  / ____|_   _|  __ \ / __ \| |  | |_   _|__   __\ \   / /\n | |      | | | |__) | |  | | |  | | | |    | |   \ \_/ / \n | |      | | |  _  /| |  | | |  | | | |    | |    \   /  \n | |____ _| |_| | \ \| |__| | |__| |_| |_   | |     | |   \n  \_____|_____|_|  \_\\\___\_\\\____/|_____|  |_|     |_|   \n" && echo
 
 _configure_os
 
@@ -154,6 +154,9 @@ _build_cirquity
 
 _note "Installation complete!"
 _note "Look in 'cirquity/build/src/' for the executible binaries. See 'https://github.com/cirquity/cirquity' for more project support. Cowabunga!"
+
+
+
 
 
 
