@@ -394,7 +394,7 @@ bool WalletBackend::tryUpgradeWalletFormat(
         System::Dispatcher localDispatcher;
         System::Dispatcher *dispatcher = &localDispatcher;
 
-        /* Our connection to turtlecoind */
+        /* Our connection to cirquityd */
         std::unique_ptr<CryptoNote::INode> node(new CryptoNote::NodeRpcProxy(daemonHost, daemonPort, 10, logManager));
 
         /* Save the old wallet to the backup file via simple file copy operation */

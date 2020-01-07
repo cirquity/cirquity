@@ -125,7 +125,7 @@ namespace CryptoNote
 
         const uint32_t MIXIN_LIMITS_V3_HEIGHT = 800000;
 
-        /* The mixin to use by default with zedwallet and turtle-service */
+        /* The mixin to use by default with zedwallet and cirquity-service */
         /* DEFAULT_MIXIN_V0 is the mixin used before MIXIN_LIMITS_V1_HEIGHT is started */
         const uint64_t DEFAULT_MIXIN_V0 = 3;
 

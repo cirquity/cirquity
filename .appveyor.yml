@@ -23,32 +23,32 @@ build_script:
   - md build
   - cd build
   - cmake -G "Visual Studio 16 2019" -A x64 .. -DARCH=default -DOPENSSL_ROOT_DIR=C:\OpenSSL-v111-Win64
-  - MSBuild TurtleCoin.sln /p:CLToolExe=clcache.exe /p:CLToolPath=c:\Python37\Scripts\ /p:Configuration=Release /m
+  - MSBuild Cirquity.sln /p:CLToolExe=clcache.exe /p:CLToolPath=c:\Python37\Scripts\ /p:Configuration=Release /m
   - src\Release\cryptotest.exe
 
 after_build:
   - clcache -s
   - if not defined APPVEYOR_REPO_TAG_NAME (set APPVEYOR_REPO_TAG_NAME=%APPVEYOR_REPO_COMMIT%)
   - cd src\Release
-  - mkdir turtlecoin-%APPVEYOR_REPO_TAG_NAME%
-  - copy *.exe turtlecoin-%APPVEYOR_REPO_TAG_NAME%
-  - copy ..\..\..\LICENSE turtlecoin-%APPVEYOR_REPO_TAG_NAME%
-  - 7z a turtlecoin-%APPVEYOR_REPO_TAG_NAME%-windows.zip turtlecoin-%APPVEYOR_REPO_TAG_NAME%
-  - copy turtlecoin-%APPVEYOR_REPO_TAG_NAME%-windows.zip ..\..\..\
+  - mkdir cirquity-%APPVEYOR_REPO_TAG_NAME%
+  - copy *.exe cirquity-%APPVEYOR_REPO_TAG_NAME%
+  - copy ..\..\..\LICENSE cirquity-%APPVEYOR_REPO_TAG_NAME%
+  - 7z a cirquity-%APPVEYOR_REPO_TAG_NAME%-windows.zip cirquity-%APPVEYOR_REPO_TAG_NAME%
+  - copy cirquity-%APPVEYOR_REPO_TAG_NAME%-windows.zip ..\..\..\
 
 artifacts:
-  - path: turtlecoin-$(APPVEYOR_REPO_TAG_NAME)-windows.zip
-    name: TurtleCoinRelease
+  - path: cirquity-$(APPVEYOR_REPO_TAG_NAME)-windows.zip
+    name: CirquityRelease
 
 deploy:
   - provider: GitHub
     auth_token:
       secure: KFrN1rc9FJN3BEoX99whHEuK5iPHHLmDcZ1Ac7tgT9oR6AxyjL0B+XMQu4wqo+fK
-    artifact: TurtleCoinRelease
+    artifact: CirquityRelease
     draft: false
     prerelease: false
     on:
-      appveyor_repo_name: turtlecoin/turtlecoin
+      appveyor_repo_name: cirquity/cirquity
       appveyor_repo_tag: true
 
   - provider: S3
@@ -56,10 +56,10 @@ deploy:
       secure: nVmSNpabdw1WcGdTTzxAEjza8j9icu89oyXbC8fZVuM=
     secret_access_key:
       secure: TpCxPp5npMRclcwHB3dhkd9ZsEgKstS6HOnQ1VR6YObEsaPyl5dr16ZdbsOgjykj
-    bucket: turtlecoin
+    bucket: cirquity
     region: us-east-2
     set_public: true
-    folder: turtlecoin
-    artifact: TurtleCoinRelease
+    folder: cirquity
+    artifact: CirquityRelease
     on:
-      appveyor_repo_name: turtlecoin/turtlecoin
+      appveyor_repo_name: cirquity/cirquity

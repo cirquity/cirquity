@@ -31,7 +31,7 @@ _note() {
 _fail() {
     local msg=`echo \'$1\'`
     _colorize red "Failure: $msg" | tee -a build.log && echo
-    _colorize red "Please check build.log and if you need help check out the team discord @ 'https://discordapp.com/invite/NZ7QYJA'" && echo
+    _colorize red "Please check build.log and if you need help check out the team discord @ 'https://discordapp.com/invite/SNZSvks'" && echo
     _colorize purple "Exiting script" && echo
     exit 1
 }
@@ -145,7 +145,7 @@ _configure_os() {
 }
 
 _note "Cirquity Multi_Installer v1.0 (pepperoni)"
-_colorize green " _______         _   _       _____      _       \n|__   __|       | | | |     / ____|    (_)      \n   | |_   _ _ __| |_| | ___| |     ___  _ _ __  \n   | | | | | '__| __| |/ _ \ |    / _ \| | '_ \ \n   | | |_| | |  | |_| |  __/ |___| (_) | | | | |\n   |_|\__,_|_|   \__|_|\___|\_____\___/|_|_| |_|\n" && echo
+_colorize green "   _____ _____ _____   ____  _    _ _____ _________     __\n  / ____|_   _|  __ \ / __ \| |  | |_   _|__   __\ \   / /\n | |      | | | |__) | |  | | |  | | | |    | |   \ \_/ / \n | |      | | |  _  /| |  | | |  | | | |    | |    \   /  \n | |____ _| |_| | \ \| |__| | |__| |_| |_   | |     | |   \n  \_____|_____|_|  \_\\___\_\\____/|_____|  |_|     |_|   \n" && echo
 
 _configure_os
 
@@ -154,3 +154,7 @@ _build_cirquity
 
 _note "Installation complete!"
 _note "Look in 'cirquity/build/src/' for the executible binaries. See 'https://github.com/cirquity/cirquity' for more project support. Cowabunga!"
+
+
+
+

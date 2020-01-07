@@ -1,4 +1,4 @@
-# USAGE: Start turtle-service as you usually would
+# USAGE: Start cirquity-service as you usually would
 # then run `python optimize.py --address $ADDRESS --port $PORT --password $RPCPASS`
 # replacing $ADDRESS, $PORT AND $RPCPASS with your values
 from cirquity import Walletd as Wallet

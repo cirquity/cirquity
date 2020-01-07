@@ -26,7 +26,7 @@ def rpc(method, params={}):
     try:
         response = requests.post(base_url, data=json.dumps(payload)).json()
     except Exception as e:
-        print("Doesn't seem like turtle-service is running. {}".format(response))
+        print("Doesn't seem like cirquity-service is running. {}".format(response))
         sys.exit(1)
 
     if 'error' in response:

@@ -5,7 +5,7 @@ set -o errexit
 TAG_VERSION=$1
 BUILD_DIRECTORY=$2
 
-function usage()
+usage()
 {
     echo "This script builds the dynamically and statically linked version"
     echo "and generates the checksum files of the cirquity tag provided."
@@ -15,7 +15,7 @@ function usage()
     exit 1
 }
 
-function checkout_tag()
+checkout_tag()
 {
     echo "cloning Github repository $GITHUB_REPO to $CLONE_DIR .."
     git clone $GITHUB_REPO $CLONE_DIR
@@ -25,7 +25,7 @@ function checkout_tag()
     git checkout $TAG_VERSION
 }
 
-function build_dynamic_linked_version()
+build_dynamic_linked_version()
 {
     echo "starting dynamic build .."
 
@@ -40,7 +40,7 @@ function build_dynamic_linked_version()
     generate_tarball $DYNAMIC_RELEASE
 }
 
-function build_static_linked_version()
+build_static_linked_version()
 {
     echo "starting static build .."
 
@@ -56,7 +56,7 @@ function build_static_linked_version()
     generate_tarball $STATIC_RELEASE
 }
 
-function generate_tarball()
+generate_tarball()
 {
     RELEASE_NAME=$1
 
@@ -77,7 +77,7 @@ function generate_tarball()
     generate_checksums $TARBALL
 }
 
-function generate_checksums()
+generate_checksums()
 {
     FILE_TO_CHECK=$1
 
@@ -88,7 +88,7 @@ function generate_checksums()
     sha512sum $FILE_TO_CHECK > $FILE_TO_CHECK.sha512
 }
 
-function cleanup()
+cleanup()
 {
     if [ -d "$CLONE_DIR" ];
     then
@@ -116,7 +116,7 @@ fi
 
 # -- Config
 GITHUB_REPO="https://github.com/cirquity/cirquity.git"
-CLONE_DIR="$BUILD_DIRECTORY/cirquity-buildall"
+CLONE_DIR="$BUILD_DIRECTORY"
 TARGET_DIR="$BUILD_DIRECTORY/cirquity-releases"
 DYNAMIC_RELEASE="cirquity-${TAG_VERSION}-linux-CLI"
 STATIC_RELEASE="cirquity-${TAG_VERSION}-linux-staticboost-CLI"
@@ -125,4 +125,3 @@ checkout_tag
 build_static_linked_version
 build_dynamic_linked_version
 cleanup
-

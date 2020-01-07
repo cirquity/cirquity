@@ -30,7 +30,7 @@
 #include <unistd.h>
 #endif
 
-#define SERVICE_NAME "Turtle-Service"
+#define SERVICE_NAME "cirquity-service"
 
 PaymentGateService *ppg;
 

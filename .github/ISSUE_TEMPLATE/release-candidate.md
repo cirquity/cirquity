@@ -100,7 +100,7 @@ Binaries for Testing:
   - [ ] Linux
   - [ ] MacOS
 
-### Turtle-Service Tests
+### cirquity-service Tests
 - Connect to local daemon
   - [ ] Windows
   - [ ] Linux

@@ -39,8 +39,7 @@ def rpc(method, params={}):
         }
     resp = requests.post(base_url, data=json.dumps(payload)).json()
     if 'result' not in resp:
-        print('Unexpected response, make sure cirquityd is running with block explorer enabled'
-               , resp)
+        print('Unexpected response, make sure cirquityd is running with block explorer enabled', resp)
         sys.exit(-1)
     else:
         return resp['result']
