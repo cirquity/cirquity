@@ -94,11 +94,11 @@ before_deploy:
 - rm -rf cirquity-${TRAVIS_TAG}
 - mkdir cirquity-${TRAVIS_TAG}
 - cp ${TARGETS} cirquity-${TRAVIS_TAG}/
-- cp ../../LICENSE turtlecoin-${TRAVIS_TAG}/
-- tar cvfz turtlecoin-${TRAVIS_TAG}-${LABEL}.tar.gz turtlecoin-${TRAVIS_TAG}/
+- cp ../../LICENSE cirquity-${TRAVIS_TAG}/
+- tar cvfz cirquity-${TRAVIS_TAG}-${LABEL}.tar.gz cirquity-${TRAVIS_TAG}/
 - rm -rf builds
 - mkdir builds
-- cp turtlecoin-${TRAVIS_TAG}-${LABEL}.tar.gz builds
+- cp cirquity-${TRAVIS_TAG}-${LABEL}.tar.gz builds
 - cd ..
 
 deploy:

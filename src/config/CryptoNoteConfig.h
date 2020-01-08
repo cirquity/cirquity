@@ -27,7 +27,7 @@ namespace CryptoNote
 
         const size_t CRYPTONOTE_MAX_TX_SIZE = 1000000000;
 
-        const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 0x3c0855;
+        const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 0x3c0855; // CIRQ
 
         const uint32_t CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW = 40;
 
@@ -382,7 +382,7 @@ namespace CryptoNote
     const static boost::uuids::uuid CRYPTONOTE_NETWORK = {{0x12, 0xEC, 0xD3, 0x69, 0xC8, 0x52, 0x57, 0x41, 0x64, 0xA9, 0x91, 0xA4, 0xB6, 0xC1, 0x43, 0xE9}};
 
     const char *const SEED_NODES[] = {
-        "111.11.11.11:18129",
-        "222.22.22.22:18129",
+        "5.135.184.167:18129", // cirquity seed-node-1
+        "5.135.185.107:18129", // cirquity seed-node-2
     };
 } // namespace CryptoNote
