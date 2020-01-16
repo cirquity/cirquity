@@ -19,7 +19,7 @@ def lastknownblock():
 
 
 def height():
-    base_url = 'http://localhost:11898/getheight'
+    base_url = 'http://localhost:18128/getheight'
     resp = requests.get(base_url).json()
     if 'height' not in resp:
         print ('Unexpected response, make sure cirquityd is running',
@@ -30,7 +30,7 @@ def height():
 
 
 def rpc(method, params={}):
-    base_url = 'http://localhost:11898/json_rpc'
+    base_url = 'http://localhost:18128/json_rpc'
     payload = {
         'jsonrpc': '2.0',
         'id': 'block_info',
@@ -70,6 +70,7 @@ while current_height > stop_height:
                 break
     except:
         print("Whoops... let's try that again")
+
 
 all_blocks.reverse()
 

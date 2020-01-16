@@ -146,7 +146,7 @@ ApiDispatcher::ApiDispatcher(
 
         /* Delete a previously prepared transaction */
         .Delete(
-            "/transactions/prepared" + ApiConstants::hashRegex,
+            "/transactions/prepared/" + ApiConstants::hashRegex,
             router(&ApiDispatcher::deletePreparedTransaction, WalletMustBeOpen, viewWalletsBanned))
 
         /* PUT */

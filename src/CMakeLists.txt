@@ -194,7 +194,7 @@ set_property(TARGET WalletApi PROPERTY OUTPUT_NAME "cirquity-api")
 set_property(TARGET WalletUpgrader PROPERTY OUTPUT_NAME "cirquity-upgrader")
 
 # Additional make targets, can be used to build a subset of the targets
-# e.g. make pool will build only cirquityd and service
+# e.g. make pool will build only cirquityd and cirquity-service
 add_custom_target(pool DEPENDS cirquityd WalletService)
 add_custom_target(solominer DEPENDS cirquityd zedwallet++ miner)
 add_custom_target(cli DEPENDS cirquityd zedwallet++)

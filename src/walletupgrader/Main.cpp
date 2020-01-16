@@ -98,7 +98,7 @@ int main(int argc, char **argv)
                      */
                     if (!walletGiven && !passGiven)
                     {
-                        bool appendExtension = Utilities::confirm("Wallet does not end in the .wallet extension. This may break compatability with some wallets. Do you want to add the .wallet extension?");
+                        bool appendExtension = Utilities::confirm("Wallet does not end in the .wallet extension. This may break compatibility with some wallets. Do you want to add the .wallet extension?");
                         if (appendExtension)
                         {
                             int renameSuccess = std::rename(walletName.c_str(), walletFileName.c_str());
