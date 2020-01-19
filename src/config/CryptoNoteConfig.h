@@ -19,7 +19,7 @@ namespace CryptoNote
 {
     namespace parameters
     {
-        const uint64_t DIFFICULTY_TARGET = 20; // seconds
+        const uint64_t DIFFICULTY_TARGET = 30; // seconds
 
         const uint32_t CRYPTONOTE_MAX_BLOCK_NUMBER = 500000000;
 
@@ -29,7 +29,7 @@ namespace CryptoNote
 
         const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 0x3c0855; // cirq
 
-        const uint32_t CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW = 90;
+        const uint32_t CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW = 40;
 
         const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT = 60 * 60 * 2;
 
@@ -56,7 +56,7 @@ namespace CryptoNote
 
         const uint64_t LWMA_2_DIFFICULTY_BLOCK_INDEX_V3 = 800000;
 
-        const unsigned EMISSION_SPEED_FACTOR = 23;
+        const unsigned EMISSION_SPEED_FACTOR = 25;
 
         static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
