@@ -22,7 +22,7 @@ def height():
     base_url = 'http://localhost:18128/getheight'
     resp = requests.get(base_url).json()
     if 'height' not in resp:
-        print ('Unexpected response, make sure cirquityd is running',
+        print('Unexpected response, make sure cirquityd is running',
                resp)
         sys.exit(-1)
     else:
