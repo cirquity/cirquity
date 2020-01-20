@@ -1711,38 +1711,62 @@ std::tuple<Error, uint16_t> RpcServer::getBlockDetailsByHash(
 
     Crypto::Hash hash;
 
-    /* Hash parameter can be both a hash string, and a number... because cryptonote.. */
-    try
-    {
-        uint64_t height = std::stoull(hashStr);
-
-        hash = m_core->getBlockHashByIndex(height - 1);
-
-        if (hash == Constants::NULL_HASH)
-        {
-            failJsonRpcRequest(
-                -2,
-                "Requested hash for a height that is higher than the current "
-                "blockchain height! Current height: " + std::to_string(topHeight),
-                res
-            );
-
-            return {SUCCESS, 200};
-        }
-    }
-    catch (const std::invalid_argument &)
+    if (hashStr.length() == 64)
     {
         if (!Common::podFromHex(hashStr, hash))
         {
             failJsonRpcRequest(
-                -1,
-                "Block hash specified is not a valid hex!",
-                res
+                    -1,
+                    "Block hash specified is not a valid hex!",
+                    res
             );
 
             return {SUCCESS, 200};
         }
     }
+    else
+    {
+        /* Hash parameter can be both a hash string, and a number... because cryptonote.. */
+        try
+        {
+            uint64_t height = std::stoull(hashStr);
+
+            hash = m_core->getBlockHashByIndex(height - 1);
+
+            if (hash == Constants::NULL_HASH)
+            {
+                failJsonRpcRequest(
+                        -2,
+                        "Requested hash for a height that is higher than the current "
+                        "blockchain height! Current height: " + std::to_string(topHeight),
+                        res
+                );
+
+                return {SUCCESS, 200};
+            }
+        }
+        catch (const std::out_of_range &)
+        {
+            failJsonRpcRequest(
+                    -1,
+                    "Block hash specified is not valid!",
+                    res
+            );
+
+            return {SUCCESS, 200};
+        }
+        catch (const std::invalid_argument &)
+        {
+            failJsonRpcRequest(
+                    -1,
+                    "Block hash specified is not valid!",
+                    res
+            );
+
+            return {SUCCESS, 200};
+        }
+    }
+
 
     const auto block = m_core->getBlockByHash(hash);
     const auto extraDetails = m_core->getBlockDetails(hash);
