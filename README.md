@@ -1,4 +1,4 @@
-![CIRQUITY-LOGO](https://user-images.githubusercontent.com/447985/71770077-0575eb00-2f29-11ea-930d-614a1e1bab6c.png)
+![CIRQUITY-LOGO](https://cirquity.com/img/logo-small.png)
 #
 | Build                | Status |
 |---------------------|--------|
