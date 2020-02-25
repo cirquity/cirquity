@@ -110,16 +110,16 @@ namespace CryptoNote
 
         const uint64_t MAXIMUM_MIXIN_V1 = 100;
 
-        const uint64_t MINIMUM_MIXIN_V2 = 7;
+        const uint64_t MINIMUM_MIXIN_V2 = 0;
 
-        const uint64_t MAXIMUM_MIXIN_V2 = 7;
+        const uint64_t MAXIMUM_MIXIN_V2 = 3;
 
-        const uint64_t MINIMUM_MIXIN_V3 = 3;
+        const uint64_t MINIMUM_MIXIN_V3 = 0;
 
         const uint64_t MAXIMUM_MIXIN_V3 = 3;
 
         /* The heights to activate the mixin limits at */
-        const uint32_t MIXIN_LIMITS_V1_HEIGHT = 440000;
+        const uint32_t MIXIN_LIMITS_V1_HEIGHT = 1000;
 
         const uint32_t MIXIN_LIMITS_V2_HEIGHT = 620000;
 
@@ -177,7 +177,7 @@ namespace CryptoNote
 
         const uint64_t MAX_EXTRA_SIZE_V2 = 1024;
 
-        const uint64_t MAX_EXTRA_SIZE_V2_HEIGHT = 1300000;
+        const uint64_t MAX_EXTRA_SIZE_V2_HEIGHT = 1000;
 
         /* 25 trillion atomic, or 250 billion CIRQ -> Max supply / mixin+1 outputs */
         /* This is enforced on the daemon side. An output > 250 billion causes
@@ -189,7 +189,7 @@ namespace CryptoNote
          * be created in a transaction */
         const uint64_t MAX_OUTPUT_SIZE_CLIENT = 1'000'000'000'00;
 
-        const uint64_t MAX_OUTPUT_SIZE_HEIGHT = 2000000;
+        const uint64_t MAX_OUTPUT_SIZE_HEIGHT = 20000;
 
         /* For new projects forked from this code base, the values immediately below
            should be changed to 0 to prevent issues with transaction processing
