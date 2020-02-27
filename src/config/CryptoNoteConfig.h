@@ -103,7 +103,7 @@ namespace CryptoNote
         const double MINIMUM_FEE_PER_BYTE_V1 = 500.00 / FEE_PER_BYTE_CHUNK_SIZE;
         
         /* Height for our first fee to byte change to take effect. */
-        const uint64_t MINIMUM_FEE_PER_BYTE_V1_HEIGHT = 2200000;
+        const uint64_t MINIMUM_FEE_PER_BYTE_V1_HEIGHT = 1000000;
 
         /* This section defines our minimum and maximum mixin counts required for transactions */
         const uint64_t MINIMUM_MIXIN_V1 = 0;
@@ -156,11 +156,13 @@ namespace CryptoNote
         const uint64_t DIFFICULTY_BLOCKS_COUNT_V3 = DIFFICULTY_WINDOW_V3 + 1;
 
         const size_t DIFFICULTY_CUT = 0; // timestamps to cut after sorting
+
         const size_t DIFFICULTY_CUT_V1 = 60;
 
         const size_t DIFFICULTY_CUT_V2 = 60;
 
         const size_t DIFFICULTY_LAG = 0; // !!!
+
         const size_t DIFFICULTY_LAG_V1 = 15;
 
         const size_t DIFFICULTY_LAG_V2 = 15;
@@ -228,7 +230,7 @@ namespace CryptoNote
 
         const size_t NORMAL_TX_MAX_OUTPUT_COUNT_V1 = 90;
 
-        const size_t NORMAL_TX_MAX_OUTPUT_COUNT_V1_HEIGHT = 2200000;
+        const size_t NORMAL_TX_MAX_OUTPUT_COUNT_V1_HEIGHT = 1000000;
 
         const uint32_t UPGRADE_HEIGHT_V2 = 1;
 
@@ -240,7 +242,7 @@ namespace CryptoNote
 
         const uint32_t UPGRADE_HEIGHT_V6 = 1000000; // Upgrade height for Chukwa switch.
 
-        const uint32_t UPGRADE_HEIGHT_CURRENT = UPGRADE_HEIGHT_V6;
+        const uint32_t UPGRADE_HEIGHT_CURRENT = UPGRADE_HEIGHT_V4;
 
         const unsigned UPGRADE_VOTING_THRESHOLD = 90; // percent
         const uint32_t UPGRADE_VOTING_WINDOW = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY; // blocks
@@ -250,12 +252,12 @@ namespace CryptoNote
 
         /* Block heights we are going to have hard forks at */
         const uint64_t FORK_HEIGHTS[] = {
-            187000, // 0
-            350000, // 1
-            440000, // 2
-            620000, // 3
-            700000, // 4
-            800000, // 5
+            1000, // 0
+            10000, // 1
+            50000, // 2
+            100000, // 3
+            250000, // 4
+            500000, // 5
             1000000, // 6
             1200000, // 7
             1300000, // 8
@@ -271,7 +273,7 @@ namespace CryptoNote
         };
 
         /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 13;
+        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 6;
 
         const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
