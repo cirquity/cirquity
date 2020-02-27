@@ -32,6 +32,8 @@ namespace CryptoNote
 
         virtual const CachedTransaction &getTransaction(const Crypto::Hash &hash) const override;
 
+        virtual const std::optional<CachedTransaction> tryGetTransaction(const Crypto::Hash &hash) const override;
+
         virtual bool removeTransaction(const Crypto::Hash &hash) override;
 
         virtual size_t getFusionTransactionCount() const override;
@@ -122,6 +124,8 @@ namespace CryptoNote
         TransactionsContainer::index<TransactionCostTag>::type &transactionCostIndex;
 
         TransactionsContainer::index<PaymentIdTag>::type &paymentIdIndex;
+
+        mutable std::mutex m_transactionsMutex;
 
         Logging::LoggerRef logger;
     };
