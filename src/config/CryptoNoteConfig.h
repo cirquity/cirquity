@@ -238,11 +238,11 @@ namespace CryptoNote
 
         const uint32_t UPGRADE_HEIGHT_V4 = 35000; // Upgrade height for CN-Lite Variant 1 switch.
 
-        const uint32_t UPGRADE_HEIGHT_V5 = 500000; // Upgrade height for CN-Turtle Variant 2 switch.
+        const uint32_t UPGRADE_HEIGHT_V5 = 100000; // Upgrade height for CN-Turtle Variant 2 switch.
 
         const uint32_t UPGRADE_HEIGHT_V6 = 1000000; // Upgrade height for Chukwa switch.
 
-        const uint32_t UPGRADE_HEIGHT_CURRENT = UPGRADE_HEIGHT_V4;
+        const uint32_t UPGRADE_HEIGHT_CURRENT = UPGRADE_HEIGHT_V5;
 
         const unsigned UPGRADE_VOTING_THRESHOLD = 90; // percent
         const uint32_t UPGRADE_VOTING_WINDOW = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY; // blocks
@@ -254,7 +254,7 @@ namespace CryptoNote
         const uint64_t FORK_HEIGHTS[] = {
             1000, // 0
             10000, // 1
-            50000, // 2
+            35000, // 2
             100000, // 3
             250000, // 4
             500000, // 5
