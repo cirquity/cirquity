@@ -1,19 +1,7 @@
 // Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
+// Copyright (c) 2019-2020, The Cirquity Developers
 //
-// This file is part of Bytecoin.
-//
-// Bytecoin is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Bytecoin is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with Bytecoin.  If not, see <http://www.gnu.org/licenses/>.
+// Please see the included LICENSE file for more information.
 
 #pragma once
 
@@ -40,6 +28,20 @@ namespace CryptoNote
             {35000, "9905a3efa0cd252468abb77a8b4368f8e1a663a6a20ade682d2a90ec3bab4697"},
             {40000, "328bd494e265742bcbe6da2c4b9b6cc6994d40c8775bc0cf6c6d2015522ffb08"},
             {45000, "b957db438ad761c625455089d50cd2a70e52767556f9de9aa6ad3b3110f2d2f2"},
-            {50000, "fad41f77a0f1636ba04ecea708470eb20f089d5547daaa19adfcfad6ac247042"}
+            {50000, "fad41f77a0f1636ba04ecea708470eb20f089d5547daaa19adfcfad6ac247042"},
+            {55000, "e0f5fca5eda6e32f157b00d1845bf293417fddd935c7845e04ef5028bf85864b"},
+            {60000, "f028cb66da84d5152583bffa4871018d8648ac7eddd0f6783bab63db5ec6dc99"},
+            {65000, "8016201e2fdace00febdc9a267c5914dd1545fd36f4576fb30ff321b59f883d5"},
+            {70000, "aa7930d9dd9bf610af9c6cc67ef0a13d2f2448f3bbc60722cb9262bfbab81620"},
+            {75000, "a033c1f9cbafdca6bb6eedeb1c9a99ded63e612cb0383ae062de80e568c04842"},
+            {80000, "0de007bf0dd736b5a303bc1bcd22c0b4df72aa558634cfd714d645150d64c9b3"},
+            {85000, "edebb0a708304154f64e8d527312831a7a372d9f394ca10b09940da5148ed509"},
+            {90000, "ae6e54f2826aad7f9b382588f29e07e01394149309248a9c877f9e1833b21d9c"},
+            {95000, "e506df18015462b7e560530552c282d3364d11325dc63eef9dd8f032d3b6c191"},
+            {100000, "939e52286ff65752646882976dc65c3f8ee0b8f5d01e36c520d2457cb261ed13"},
+            {105000, "0ab32f7e848ca69d805f3d26f1892e447360a2d6f8cb57017b0d9415518a13de"},
+            {110000, "6a0ee6cc572ebe787230882bd60577dffcedc7c928ef0b41329e64307e192811"},
+            {115000, "43d87f184597a89160150ab47173571d7a37fa4d16d359be3b93de2cf0091c36"},
+            {120000, "aad696b41445daaa177c7d5a80466fcf7ce28c697882289c56b0929299502906"}
     };
 } // namespace CryptoNote
