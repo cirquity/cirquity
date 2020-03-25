@@ -1,5 +1,10 @@
 ![CIRQUITY-LOGO](https://cirquity.com/img/logo-small.png)
+#
 
+| Build                | Status |
+|---------------------|--------|
+| Master              | ![Build Status](https://github.com/cirquity/cirquity/workflows/Build/badge.svg?branch=master)
+| Development         | ![Build Status](https://github.com/cirquity/cirquity/workflows/Build/badge.svg?branch=development)
 
 ## Installing
 
