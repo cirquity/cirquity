@@ -386,5 +386,6 @@ namespace CryptoNote
     const char *const SEED_NODES[] = {
         "5.135.184.167:18129", // cirquity seed-node-1
         "5.135.185.107:18129", // cirquity seed-node-2
+        "51.79.157.175:18129", // cirquity seed-node-3 | singapore
     };
 } // namespace CryptoNote
