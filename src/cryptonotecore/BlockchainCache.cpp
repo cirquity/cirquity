@@ -239,7 +239,6 @@ namespace CryptoNote
         blockInfos.get<BlockIndexTag>().push_back(std::move(blockInfo));
 
         auto blockIndex = cachedBlock.getBlockIndex();
-        assert(blockIndex == blockInfos.size() + startIndex - 1);
 
         for (const auto &keyImage : validatorState.spentKeyImages)
         {
