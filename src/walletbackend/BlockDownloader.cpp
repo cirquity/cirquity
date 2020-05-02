@@ -250,12 +250,12 @@ bool BlockDownloader::downloadBlocks()
     const auto [success, blocks, topBlock] = m_daemon->getWalletSyncData(
         blockCheckpoints, m_startHeight, m_startTimestamp, Config::config.wallet.skipCoinbaseTransactions);
 
-    /* Synced, store the top block so sync status displayes correctly if
+    /* Synced, store the top block so sync status displays correctly if
        we are not scanning coinbase tx only blocks */
     /* We can have an issue where we download a block, say, block 1000,
        then because we have space for more blocks, we go to fetch more,
        and this time get none, because we're synced. We then store the
-       topblock, which is also 1000, as having being processed, when in
+       top block, which is also 1000, as having being processed, when in
        fact, we're still waiting for it to be processed. So, if we only store
        it if we have no blocks waiting to be processed, it fixes this issue */
     if (success && blocks.empty() && topBlock && m_storedBlocks.size() == 0)

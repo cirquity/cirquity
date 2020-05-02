@@ -713,7 +713,7 @@ Error WalletBackend::save() const
    blockchain synchronizer first (Call save()) */
 Error WalletBackend::unsafeSave() const
 {
-    return WalletBackend::saveWalletJSONToDisk(toJSON(), m_filename, m_password);
+    return WalletBackend::saveWalletJSONToDisk(unsafeToJSON(), m_filename, m_password);
 }
 
 /* Get the balance for one subwallet (error, unlocked, locked) */
@@ -778,6 +778,8 @@ bool WalletBackend::removePreparedTransaction(const Crypto::Hash &transactionHas
 std::tuple<Error, Crypto::Hash> WalletBackend::sendPreparedTransaction(
     const Crypto::Hash transactionHash)
 {
+    std::scoped_lock lock(m_transactionMutex);
+
     auto it = m_preparedTransactions.find(transactionHash);
 
     if (it == m_preparedTransactions.end())
@@ -812,6 +814,8 @@ std::tuple<Error, Crypto::Hash, WalletTypes::PreparedTransactionInfo> WalletBack
     const bool sendAll,
     const bool sendTransaction)
 {
+    std::scoped_lock lock(m_transactionMutex);
+
     const auto [error, hash, preparedTransaction] = SendTransaction::sendTransactionBasic(
         destination,
         amount,
@@ -842,6 +846,8 @@ std::tuple<Error, Crypto::Hash, WalletTypes::PreparedTransactionInfo> WalletBack
     const bool sendAll,
     const bool sendTransaction)
 {
+    std::scoped_lock lock(m_transactionMutex);
+
     const auto [error, hash, preparedTransaction] = SendTransaction::sendTransactionAdvanced(
         destinations,
         mixin,
@@ -867,6 +873,8 @@ std::tuple<Error, Crypto::Hash, WalletTypes::PreparedTransactionInfo> WalletBack
 
 std::tuple<Error, Crypto::Hash> WalletBackend::sendFusionTransactionBasic()
 {
+    std::scoped_lock lock(m_transactionMutex);
+
     return SendTransaction::sendFusionTransactionBasic(m_daemon, m_subWallets);
 }
 
@@ -874,17 +882,27 @@ std::tuple<Error, Crypto::Hash> WalletBackend::sendFusionTransactionAdvanced(
     const uint64_t mixin,
     const std::vector<std::string> subWalletsToTakeFrom,
     const std::string destination,
-    const std::vector<uint8_t> extraData)
+    const std::vector<uint8_t> extraData,
+    const std::optional<uint64_t> optimizeTarget)
 {
+    std::scoped_lock lock(m_transactionMutex);
+
     return SendTransaction::sendFusionTransactionAdvanced(
-        mixin, subWalletsToTakeFrom, destination, m_daemon, m_subWallets, extraData);
+        mixin,
+        subWalletsToTakeFrom,
+        destination,
+        m_daemon,
+        m_subWallets,
+        extraData,
+        optimizeTarget
+    );
 }
 
 void WalletBackend::reset(uint64_t scanHeight, uint64_t timestamp)
 {
     m_syncRAIIWrapper->pauseSynchronizerToRunFunction([this, scanHeight, timestamp]() mutable {
         /* Though the wallet synchronizer can support both a timestamp and a
-           scanheight, we need a fixed scan height to cut transactions from.
+           scan height, we need a fixed scan height to cut transactions from.
            Since a transaction in block 10 could have a timestamp before a
            transaction in block 9, we can't rely on timestamps to reset accurately. */
         if (timestamp != 0)
@@ -1245,6 +1263,11 @@ std::vector<std::tuple<std::string, uint64_t, uint64_t>> WalletBackend::getBalan
 }
 
 std::string WalletBackend::toJSON() const
+{
+    return m_syncRAIIWrapper->pauseSynchronizerToRunFunction([this]() { return unsafeToJSON(); });
+}
+
+std::string WalletBackend::unsafeToJSON() const
 {
     StringBuffer sb;
     Writer<StringBuffer> writer(sb);

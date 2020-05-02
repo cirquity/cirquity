@@ -167,7 +167,8 @@ class WalletBackend
         const uint64_t mixin,
         const std::vector<std::string> subWalletsToTakeFrom,
         const std::string destinationAddress,
-        const std::vector<uint8_t> extraData);
+        const std::vector<uint8_t> extraData,
+        const std::optional<uint64_t> optimizeTarget);
 
     /* Get the balance for one subwallet (error, unlocked, locked) */
     std::tuple<Error, uint64_t, uint64_t> getBalance(const std::string address) const;
@@ -257,7 +258,7 @@ class WalletBackend
     /* Swap to a different daemon node */
     void swapNode(std::string daemonHost, uint16_t daemonPort, bool daemonSSL);
 
-    /* Whether we have recieved info from the daemon at some point */
+    /* Whether we have received info from the daemon at some point */
     bool daemonOnline() const;
 
     std::tuple<Error, std::string> getAddress(const Crypto::PublicKey spendKey) const;
@@ -314,6 +315,8 @@ class WalletBackend
 
     Error unsafeSave() const;
 
+    std::string unsafeToJSON() const;
+
     void init();
 
 
@@ -342,4 +345,7 @@ class WalletBackend
 
     /* Prepared, unsent transactions. */
     std::unordered_map<Crypto::Hash, WalletTypes::PreparedTransactionInfo> m_preparedTransactions;
+
+    /* Ensure we only send one transaction in parallel, otherwise txs will likely fail. */
+    std::mutex m_transactionMutex;
 };
