@@ -344,11 +344,11 @@ namespace PaymentService
         uint64_t fixedFee;
         double feePerByte;
 
-        if (!serializer(fixedFee, "fee"))
+        if (serializer(fixedFee, "fee"))
         {
             fee = WalletTypes::FeeType::FixedFee(fixedFee);
         }
-        else if (!serializer(feePerByte, "feePerByte"))
+        else if (serializer(feePerByte, "feePerByte"))
         {
             fee = WalletTypes::FeeType::FeePerByte(feePerByte);
         }
