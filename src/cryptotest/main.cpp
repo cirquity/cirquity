@@ -272,7 +272,10 @@ void benchmarkGenerateKeyDerivation()
     std::cout << "Time to perform generateKeyDerivation: " << timePerDerivation / 1000.0 << " ms" << std::endl;
 }
 
-void TestDeterministicSubwalletCreation (const std::string baseSpendKey, const uint64_t subWalletIndex, const std::string expectedSpendKey)
+void TestDeterministicSubwalletCreation(
+    const std::string baseSpendKey,
+    const uint64_t subWalletIndex,
+    const std::string expectedSpendKey)
 {
     Crypto::SecretKey f_baseSpendKey;
 
@@ -292,7 +295,8 @@ void TestDeterministicSubwalletCreation (const std::string baseSpendKey, const u
         exit(1);
     }
 
-    const auto [subwalletPrivateKey, subwalletPublicKey] = Crypto::generate_deterministic_subwallet_keys(f_baseSpendKey, subWalletIndex);
+    const auto [subwalletPrivateKey, subwalletPublicKey] =
+        Crypto::generate_deterministic_subwallet_keys(f_baseSpendKey, subWalletIndex);
 
     if (subwalletPrivateKey != f_expectedSpendKey)
     {

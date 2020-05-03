@@ -35,7 +35,7 @@ namespace CryptoNote
 
         TransactionPoolMessage(const DeleteTransaction &at);
 
-        // pattern matchin API
+        // pattern match in API
         void match(std::function<void(const AddTransaction &)> &&, std::function<void(const DeleteTransaction &)> &&);
 
         // API with explicit type handling
