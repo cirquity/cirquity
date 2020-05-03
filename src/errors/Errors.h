@@ -215,7 +215,7 @@ enum ErrorCode
     /* Extra data for transaction is not a valid hexadecimal string */
     INVALID_EXTRA_DATA = 53,
 
-    /* An unknown error occured */
+    /* An unknown error occurred */
     UNKNOWN_ERROR = 54,
 
     /* The daemon received our request but we timed out before we could figure
@@ -234,6 +234,10 @@ enum ErrorCode
      * it never existed, or because the wallet was restarted and the prepared
      * transaction state was lost */
     PREPARED_TRANSACTION_NOT_FOUND = 58,
+
+    /* The amount given does not have only a single significant digit - i.e.,
+     * it cannot be used directly as a transaction input/output amount */
+    AMOUNT_UGLY = 59,
 };
 
 class Error
