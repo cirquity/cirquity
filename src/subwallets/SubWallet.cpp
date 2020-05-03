@@ -104,7 +104,29 @@ void SubWallet::storeTransactionInput(const WalletTypes::TransactionInput input,
             m_unconfirmedIncomingAmounts.erase(it, m_unconfirmedIncomingAmounts.end());
         }
     }
-    m_unspentInputs.push_back(input);
+
+    auto it = std::find_if(m_unspentInputs.begin(), m_unspentInputs.end(), [&input](const auto x) {
+        return x.key == input.key;
+    });
+
+    /* Ensure we don't add the input twice */
+    if (it == m_unspentInputs.end())
+    {
+        m_unspentInputs.push_back(input);
+    }
+    else
+    {
+        std::stringstream stream;
+
+        stream << "Input with key " << input.key
+               << " being stored is already present in unspent inputs vector.";
+
+        Logger::logger.log(
+            stream.str(),
+            Logger::WARNING,
+            { Logger::SYNC }
+        );
+    }
 }
 
 std::tuple<uint64_t, uint64_t> SubWallet::getBalance(const uint64_t currentHeight) const
@@ -170,15 +192,40 @@ Crypto::SecretKey SubWallet::privateSpendKey() const
 void SubWallet::markInputAsSpent(const Crypto::KeyImage keyImage, const uint64_t spendHeight)
 {
     /* Find the input */
-    auto it = std::find_if(
-        m_unspentInputs.begin(), m_unspentInputs.end(), [&keyImage](const auto x) { return x.keyImage == keyImage; });
+    auto it = std::find_if(m_unspentInputs.begin(), m_unspentInputs.end(), [&keyImage](const auto x) {
+        return x.keyImage == keyImage;
+    });
+
+    bool inSpent = std::find_if(m_spentInputs.begin(), m_spentInputs.end(), [&keyImage](const auto x) {
+        return x.keyImage == keyImage;
+    }) != m_spentInputs.end();
+
+    if (inSpent)
+    {
+        std::stringstream stream;
+
+        stream << "Input with key image " << keyImage
+               << " being marked as spent is already present in spent inputs vector.";
+
+        Logger::logger.log(
+            stream.str(),
+            Logger::WARNING,
+            { Logger::SYNC }
+        );
+    }
+
     if (it != m_unspentInputs.end())
     {
         /* Set the spend height */
         it->spendHeight = spendHeight;
 
-        /* Add to the spent inputs vector */
-        m_spentInputs.push_back(*it);
+
+        /* Ensure we don't add the input twice */
+        if (!inSpent)
+        {
+            /* Add to the spent inputs vector */
+            m_spentInputs.push_back(*it);
+        }
 
         /* Remove from the unspent vector */
         m_unspentInputs.erase(it);
@@ -194,8 +241,11 @@ void SubWallet::markInputAsSpent(const Crypto::KeyImage keyImage, const uint64_t
         /* Set the spend height */
         it->spendHeight = spendHeight;
 
-        /* Add to the spent inputs vector */
-        m_spentInputs.push_back(*it);
+        if (!inSpent)
+        {
+            /* Add to the spent inputs vector */
+            m_spentInputs.push_back(*it);
+        }
 
         /* Remove from the locked vector */
         m_lockedInputs.erase(it);
@@ -236,8 +286,28 @@ void SubWallet::markInputAsLocked(const Crypto::KeyImage keyImage)
         return;
     }
 
-    /* Add to the spent inputs vector */
-    m_lockedInputs.push_back(*it);
+    bool inLocked = std::find_if(m_lockedInputs.begin(), m_lockedInputs.end(), [&keyImage](const auto x) {
+        return x.keyImage == keyImage;
+    }) != m_lockedInputs.end();
+
+    if (!inLocked)
+    {
+        /* Add to the locked inputs vector */
+        m_lockedInputs.push_back(*it);
+    }
+    else
+    {
+        std::stringstream stream;
+
+        stream << "Input with key image " << keyImage
+               << " being marked as locked is already present in locked inputs vector.";
+
+        Logger::logger.log(
+            stream.str(),
+            Logger::WARNING,
+            { Logger::SYNC }
+        );
+    }
 
     /* Remove from the unspent vector */
     m_unspentInputs.erase(it);
@@ -284,8 +354,28 @@ std::vector<Crypto::KeyImage> SubWallet::removeForkedInputs(const uint64_t forkH
             /* Reset spend height */
             input.spendHeight = 0;
 
-            /* Readd to the unspent vector */
-            m_unspentInputs.push_back(input);
+            bool inUnspent = std::find_if(m_unspentInputs.begin(), m_unspentInputs.end(), [&input](const auto x) {
+                return x.key == input.key;
+            }) != m_unspentInputs.end();
+
+            if (!inUnspent)
+            {
+                /* Re-add to the unspent vector */
+                m_unspentInputs.push_back(input);
+            }
+            else
+            {
+                std::stringstream stream;
+
+                stream << "Input with key " << input.key
+                       << " being marked as unspent is already present in unspent inputs vector.";
+
+                Logger::logger.log(
+                    stream.str(),
+                    Logger::WARNING,
+                    { Logger::SYNC }
+                );
+            }
 
             return true;
         }
