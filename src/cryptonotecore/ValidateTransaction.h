@@ -79,6 +79,8 @@ class ValidateTransaction
 
         bool validateTransactionInputsExpensive();
 
+        void setTransactionValidationResult(const std::error_code &error_code, const std::string &error_message = "");
+
         /////////////////////////
         /* PRIVATE MEMBER VARS */
         /////////////////////////
@@ -106,4 +108,6 @@ class ValidateTransaction
         uint64_t m_sumOfInputs = 0;
 
         Utilities::ThreadPool<bool> &m_threadPool;
+
+        std::mutex m_mutex;
 };
