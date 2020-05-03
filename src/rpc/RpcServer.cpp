@@ -145,7 +145,7 @@ RpcServer::RpcServer(
             .Get("/peers", router(&RpcServer::peers, RpcMode::Default, bodyNotRequired, syncNotRequired))
 
             .Post("/json_rpc", jsonRpc)
-            .Post("/sendrawtransaction", router(&RpcServer::sendTransaction, RpcMode::Default, bodyRequired, syncNotRequired))
+            .Post("/sendrawtransaction", router(&RpcServer::sendTransaction, RpcMode::Default, bodyRequired, syncRequired))
             .Post("/getrandom_outs", router(&RpcServer::getRandomOuts, RpcMode::Default, bodyRequired, syncNotRequired))
             .Post("/getwalletsyncdata", router(&RpcServer::getWalletSyncData, RpcMode::Default, bodyRequired, syncNotRequired))
             .Post("/get_global_indexes_for_range", router(&RpcServer::getGlobalIndexes, RpcMode::Default, bodyRequired, syncNotRequired))
@@ -1171,7 +1171,7 @@ std::tuple<Error, uint16_t> RpcServer::getBlockTemplate(
 
         /* The reserved offset is past the transactionPublicKey, then past
          * the extra nonce tags */
-        reservedOffset = (it - blockBlob.begin()) + sizeof(transactionPublicKey) + 3;
+        reservedOffset = (it - blockBlob.begin()) + sizeof(transactionPublicKey) + 3; // TODO: change on +2?
 
         if (reservedOffset + reserveSize > blockBlob.size())
         {
@@ -1732,9 +1732,9 @@ std::tuple<Error, uint16_t> RpcServer::getBlockDetailsByHash(
         if (!Common::podFromHex(hashStr, hash))
         {
             failJsonRpcRequest(
-                    -1,
-                    "Block hash specified is not a valid hex!",
-                    res
+                -1,
+                "Block hash specified is not a valid hex!",
+                res
             );
 
             return {SUCCESS, 200};
@@ -1752,10 +1752,10 @@ std::tuple<Error, uint16_t> RpcServer::getBlockDetailsByHash(
             if (hash == Constants::NULL_HASH)
             {
                 failJsonRpcRequest(
-                        -2,
-                        "Requested hash for a height that is higher than the current "
-                        "blockchain height! Current height: " + std::to_string(topHeight),
-                        res
+                    -2,
+                    "Requested hash for a height that is higher than the current "
+                    "blockchain height! Current height: " + std::to_string(topHeight),
+                    res
                 );
 
                 return {SUCCESS, 200};
@@ -1764,9 +1764,9 @@ std::tuple<Error, uint16_t> RpcServer::getBlockDetailsByHash(
         catch (const std::out_of_range &)
         {
             failJsonRpcRequest(
-                    -1,
-                    "Block hash specified is not valid!",
-                    res
+                -1,
+                "Block hash specified is not valid!",
+                res
             );
 
             return {SUCCESS, 200};
@@ -1774,9 +1774,9 @@ std::tuple<Error, uint16_t> RpcServer::getBlockDetailsByHash(
         catch (const std::invalid_argument &)
         {
             failJsonRpcRequest(
-                    -1,
-                    "Block hash specified is not valid!",
-                    res
+                -1,
+                "Block hash specified is not valid!",
+                res
             );
 
             return {SUCCESS, 200};
