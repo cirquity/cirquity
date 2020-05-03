@@ -32,7 +32,7 @@ void TransactionMonitor::start()
         /* Don't print out fusion or outgoing transactions */
         if (!tx.isFusionTransaction() && tx.totalAmount() > 0)
         {
-            /* Aquire the lock, so we're not interleaving our output when a
+            /* Acquire the lock, so we're not interleaving our output when a
                command is being handled, for example, transferring */
             std::scoped_lock lock(*m_mutex);
 

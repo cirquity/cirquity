@@ -22,7 +22,7 @@ bool handleCommand(
     const std::shared_ptr<WalletBackend> walletBackend,
     const std::shared_ptr<std::mutex> mutex)
 {
-    /* Aquire the lock so transactions don't get printed whilst we're handling
+    /* Acquire the lock so transactions don't get printed whilst we're handling
        a command */
     std::scoped_lock lock(*mutex);
 

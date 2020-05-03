@@ -33,6 +33,8 @@ ZedConfig parseArguments(int argc, char **argv)
 
     unsigned int threads;
 
+    std::string logFilePath;
+
     options.add_options("Core")(
         "h,help", "Display this help message", cxxopts::value<bool>(help)->implicit_value("true"))
 
@@ -111,6 +113,22 @@ ZedConfig parseArguments(int argc, char **argv)
     else
     {
         config.logLevel = static_cast<Logger::LogLevel>(logLevel);
+    }
+
+    if (logFilePath != "")
+    {
+        config.loggingFilePath = logFilePath;
+
+        std::ofstream logFile(logFilePath, std::ios_base::app);
+
+        if (!logFile)
+        {
+            std::cout << "Failed to open log file. Please ensure you specified "
+                      << "a valid filepath and have permissions to create files "
+                      << "in this directory. Error: " << strerror(errno) << std::endl;
+
+            exit(1);
+        }
     }
 
     if (threads == 0)
