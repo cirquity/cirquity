@@ -2,8 +2,8 @@ version: '3'
 
 services:
   node1:
-    image: funkypenguin/turtlecoin
-    container_name: turtletest-node1
+    image: deeterd/cirquity
+    container_name: cirqtest-node1
     volumes:
       - ../cirquityd:/var/lib/cirquityd/
     networks:
