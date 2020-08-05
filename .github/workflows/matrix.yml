@@ -133,7 +133,7 @@ jobs:
 
       # Upload to GH Actions Artifacts
       - name: Upload To GH Artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.before_deploy.outputs.artifact_name }}
           path: ./build/src/${{ steps.before_deploy.outputs.binary_path }}
@@ -217,7 +217,7 @@ jobs:
 
       # Upload to GH Actions Artifacts
       - name: Upload To GH Artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.before_deploy.outputs.artifact_name }}
           path: ./build/src/${{ steps.before_deploy.outputs.binary_path }}
@@ -225,7 +225,7 @@ jobs:
   # Windows Builds on Windows Server 2019
   windows_build:
     name: Windows
-    runs-on: windows-2019
+    runs-on: windows-latest
     env:
       MSBUILD_PATH: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin"
       LABEL: windows
@@ -257,7 +257,8 @@ jobs:
           $env:CLCACHE_DIR = "$env:GITHUB_WORKSPACE\clcache"
           $env:PATH = "$env:PATH;$env:MSBUILD_PATH"
           cd build
-          MSBuild cirquity.sln /p:CLToolExe=clcache.exe /p:CLToolPath=c:\hostedtoolcache\windows\Python\3.7.7\x64\Scripts\ /p:Configuration=Release /p:PlatformToolset=v141 /m
+          MSBuild cirquity.sln /p:CLToolExe=clcache.exe /p:Configuration=Release /p:PlatformToolset=v141 /m
+
 
       # Test the crypto
       - name: Test Crypto
@@ -299,7 +300,7 @@ jobs:
 
       # Upload to GH Actions Artifacts
       - name: Upload To GH Artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.before_deploy.outputs.artifact_name }}
           path: ./build/src/Release/${{ steps.before_deploy.outputs.binary_path }}
