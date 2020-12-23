@@ -45,7 +45,7 @@ jobs:
       CCACHE_DIR: $GITHUB_WORKSPACE/.ccache
       LABEL: ${{ matrix.label }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       # Fetch Dependencies
       - name: Dependencies
@@ -148,7 +148,7 @@ jobs:
       LABEL: osx
       CCACHE_DIR: $GITHUB_WORKSPACE/.ccache
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       # Fetch Dependencies
       - name: Dependencies
@@ -230,7 +230,7 @@ jobs:
       MSBUILD_PATH: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin"
       LABEL: windows
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Setup clcache
         run: pip install clcache
