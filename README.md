@@ -27,7 +27,6 @@ However, if you wish to create *portable* binaries that can be shared between sy
 > You will need the following packages: [Boost](https://www.boost.org/), [OpenSSL](https://www.openssl.org/), cmake (3.8 or higher), make, and git.
 > You will also need either GCC/G++, or Clang.
 > If you are using GCC, you will need GCC-7.0 or higher.
-> If you are using Clang, you will need Clang 6.0 or higher. You will also need libstdc++\-6.0 or higher.
 
 * #### **Ubuntu, using GCC**
     ```bash
@@ -52,14 +51,6 @@ However, if you wish to create *portable* binaries that can be shared between sy
     cd src
     ./cirquityd --version
     ```
-
-* #### **Ubuntu, using Clang**
-    ```bash
-    sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-    ```
-  
-    You need to modify the below command for your version of ubuntu - see https://apt.llvm.org/
 
 * #### **Ubuntu 14.04 (Trusty)**
     ```bash
@@ -206,7 +197,7 @@ Hi Cirquity contributor, thanks for forking and sending back Pull Requests. Exte
 // Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
 // Copyright (c) 2014-2018, The Monero Project
 // Copyright (c) 2018-2019, The TurtleCoin Developers
-// Copyright (c) 2019-2020, The Cirquity Developers
+// Copyright (c) 2019-2021, The Cirquity Developers
 //
 // Please see the included LICENSE file for more information.
 ```

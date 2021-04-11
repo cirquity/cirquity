@@ -1,7 +1,7 @@
 // Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
 // Copyright (c) 2014-2018, The Monero Project
 // Copyright (c) 2018-2019, The TurtleCoin Developers
-// Copyright (c) 2019-2020, The Cirquity Developers
+// Copyright (c) 2019-2021, The Cirquity Developers
 //
 // Please see the included LICENSE file for more information.
 
@@ -61,8 +61,8 @@ namespace CryptoNote
         static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
         const char GENESIS_COINBASE_TX_HEX[] =
-                "012801ff000183b1de16029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121010ca9abb3d1bdf7d4"
-                "a86cbb2861c03f9c430ee2e1ce9528f1bb7b87a9b2180e40";
+            "012801ff000183b1de16029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121010ca9abb3d1bdf7d4"
+            "a86cbb2861c03f9c430ee2e1ce9528f1bb7b87a9b2180e40";
 
         static_assert(
             sizeof(GENESIS_COINBASE_TX_HEX) / sizeof(*GENESIS_COINBASE_TX_HEX) != 1,
@@ -85,10 +85,10 @@ namespace CryptoNote
 
         const size_t CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE = 600;
 
-        const size_t CRYPTONOTE_DISPLAY_DECIMAL_POINT = 2;
+        const size_t CRYPTONOTE_DISPLAY_DECIMAL_POINT = 5;
 
         /* TODO: Remove? */
-        const uint64_t MINIMUM_FEE = UINT64_C(10);
+        const uint64_t MINIMUM_FEE = UINT64_C(10000);
 
         /* Fee per byte is rounded up in chunks. This helps makes estimates
          * more accurate. It's suggested to make this a power of two, to relate
@@ -184,7 +184,7 @@ namespace CryptoNote
         /* 25 trillion atomic, or 250 billion CIRQ -> Max supply / mixin+1 outputs */
         /* This is enforced on the daemon side. An output > 250 billion causes
          * an invalid block. */
-        const uint64_t MAX_OUTPUT_SIZE_NODE   = 250'000'000'000'00;
+        const uint64_t MAX_OUTPUT_SIZE_NODE = 250'000'000'000'00;
 
         /* 100 billion atomic, or 1 billion CIRQ */
         /* This is enforced on the client side. An output > 1 billion will not
@@ -259,21 +259,11 @@ namespace CryptoNote
             102000, // 4
             500000, // 5
             1000000, // 6
-            1200000, // 7
-            1300000, // 8
-            1400000, // 9
-            1600000, // 10
-            1800000, // 11
-            2000000, // 12
-            2200000, // 13
-            2400000, // 14
-            2600000, // 15
-            2800000, // 16
-            3000000, // 17
+            1250000, // 7
         };
 
         /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
-        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 6;
+        const uint64_t SOFTWARE_SUPPORTED_FORK_INDEX = 7;
 
         const uint64_t FORK_HEIGHTS_SIZE = sizeof(FORK_HEIGHTS) / sizeof(*FORK_HEIGHTS);
 
@@ -346,9 +336,9 @@ namespace CryptoNote
 
     // P2P Network Configuration Section - This defines our current P2P network version
     // and the minimum version for communication between nodes
-    const uint8_t P2P_CURRENT_VERSION = 7;
+    const uint8_t P2P_CURRENT_VERSION = 8;
 
-    const uint8_t P2P_MINIMUM_VERSION = 6;
+    const uint8_t P2P_MINIMUM_VERSION = 7;
 
     // This defines the minimum P2P version required for lite blocks propogation
     const uint8_t P2P_LITE_BLOCKS_PROPOGATION_VERSION = 4;
@@ -381,7 +371,8 @@ namespace CryptoNote
 
     const std::string LICENSE_URL = "https://github.com/cirquity/cirquity/blob/master/LICENSE";
 
-    const static boost::uuids::uuid CRYPTONOTE_NETWORK = {{0x12, 0xEC, 0xD3, 0x69, 0xC8, 0x52, 0x57, 0x41, 0x64, 0xA9, 0x91, 0xA4, 0xB6, 0xC1, 0x43, 0xE9}};
+    const static boost::uuids::uuid CRYPTONOTE_NETWORK = {
+        {0x12, 0xEC, 0xD3, 0x69, 0xC8, 0x52, 0x57, 0x41, 0x64, 0xA9, 0x91, 0xA4, 0xB6, 0xC1, 0x43, 0xE9}};
 
     const char *const SEED_NODES[] = {
         "5.135.184.167:18129", // cirquity seed-node-1
